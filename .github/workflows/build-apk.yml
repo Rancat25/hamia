@@ -14,11 +14,15 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.13.9'
-          channel: 'stable'
+          flutter-version: '3.19.0'
+          
+      - name: Enable Android V2 Embedding
+        run: |
+          echo "flutter.buildMode=release" >> android/local.properties
           
       - name: Build APK
         run: |
+          flutter clean
           flutter pub get
           flutter build apk --release
           
